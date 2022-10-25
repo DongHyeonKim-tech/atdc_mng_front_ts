@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ConnectedRouter } from 'connected-react-router';
+// import "App.less";
+import 'features/common/layout/styles/common.css';
+import IndexRoute from 'routes/IndexRoute';
+import { BrowserRouter } from "react-router-dom"
 
-function App() {
+function App( history: any ) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      // <ConnectedRouter history={history}>
+          <BrowserRouter>
+              <IndexRoute />
+          </BrowserRouter>
+
+
+      // </ConnectedRouter>
   );
 }
-
 export default App;
