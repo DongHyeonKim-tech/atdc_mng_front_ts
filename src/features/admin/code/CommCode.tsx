@@ -7,14 +7,13 @@ import CodeForm from 'features/admin/code/components/CodeForm';
 import { codeAction } from 'features/admin/code/codeReducer';
 import { deleteCode, insertCode, updateCode } from 'features/admin/code/codeAPI';
 
+
 const CommCode = () => {
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { codeList, codeDetail } = useSelector(({ codeReducer }) => ({
-    codeList: codeReducer.codeList,
-    codeDetail: codeReducer.codeDetail,
+  const { codeList, codeDetail } = useSelector((state: any) => ({
+    codeList: state.codeReducer.codeList,
+    codeDetail: state.codeReducer.codeDetail,
   }));
 
   /* eslint-disable */
@@ -22,8 +21,8 @@ const CommCode = () => {
     dispatch(codeAction.getCodeList({ target: 'codeList' }));
   }, []);
 
-  const [selectedKeys, setSelectedKeys] = useState<Array<string> | null | undefined>();
-  const codeSelectHandler = (keys: any) => {
+  const [selectedKeys, setSelectedKeys] = useState<Array<string> | undefined>();
+  const codeSelectHandler = (keys: any) : void => {
     setSelectedKeys(keys);
     if (keys && keys.length > 0) {
       dispatch(codeAction.getCode({ target: 'codeDetail', codeKey: keys[0] }));
@@ -85,15 +84,15 @@ const CommCode = () => {
     });
   };
 
-  useEffect(() => {
-    if (codeList.error) {
-      Modal.error({
-        title: '오류 발생',
-        content: codeList.errorMessage,
-        okText: '확인',
-      });
-    }
-  }, [codeList]);
+  // useEffect(() => {
+  //   if (codeList.error) {
+  //     Modal.error({
+  //       title: '오류 발생',
+  //       content: codeList.errorMessage,
+  //       okText: '확인',
+  //     });
+  //   }
+  // }, [codeList]);
 
   type dataSourceType = {children: Array<any>}
 

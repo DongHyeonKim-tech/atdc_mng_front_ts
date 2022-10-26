@@ -1,9 +1,7 @@
 import React from 'react';
 import { Tree } from 'antd';
-import PropTypes from 'prop-types';
 
-
-const CodeTreeList = (dataSource: any, codeSelectHandler: any, selectedKeys: any) => {
+const CodeTreeList = ({dataSource, codeSelectHandler, selectedKeys}: {dataSource: any, codeSelectHandler: any, selectedKeys: Array<string> | undefined}) => {
   return (
     <div
     // style={{ border: "1px solid #ddd" }}
@@ -21,10 +19,5 @@ const CodeTreeList = (dataSource: any, codeSelectHandler: any, selectedKeys: any
   );
 };
 
-// CodeTreeList.propTypes = {
-//   dataSource: PropTypes.object,
-//   codeSelectHandler: PropTypes.func.isRequired,
-//   selectedKeys: PropTypes.arrayOf(PropTypes.string)
-// }
 
 export default CodeTreeList;

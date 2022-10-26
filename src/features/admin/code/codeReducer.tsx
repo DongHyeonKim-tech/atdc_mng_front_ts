@@ -17,8 +17,8 @@ const INSERT_CODE = 'code/insertCode';
 const UPDATE_CODE = 'code/updateCode';
 
 const initialState = {
-  codeList: reducerUtils.init(''),
-  codeDetail: reducerUtils.init(''),
+  codeList: reducerUtils.init({data: null, loading: false, error: false, errorMessage: null}),
+  codeDetail: reducerUtils.init({data: null, loading: false, error: false, errorMessage: null}),
 };
 
 const defaultState = {
@@ -46,6 +46,7 @@ export const codeSlice = createSlice({
 
   // 초기값
   initialState,
+
 
   // 리듀서
   reducers: {

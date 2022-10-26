@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input, Radio } from 'antd';
 import PropTypes, {func} from "prop-types";
 
-const CodeForm = (initialValues: any, submitHandler: (fieldsValue: any) => void, deleteHandler: (fieldsValue: any, form: object) => void, updateHandler: (fieldsValue: any) => void) => {
+const CodeForm = (
+    {initialValues, submitHandler, deleteHandler, updateHandler} : {initialValues: any, submitHandler: (fieldsValue: any) => void, deleteHandler: (fieldsValue: any, form: object) => void, updateHandler: (fieldsValue: any) => void}) => {
   const [codeForm] = Form.useForm();
   const [viewMode, setViewMode] = useState<boolean>(true);
   const [createMode, setCreateMode] = useState<boolean>(true);

@@ -23,7 +23,7 @@ export const reducerUtils = {
     errorMessage: null,
   }),
 
-  success: (data = null) => ({
+  success: (data: object) => ({
     data: data,
     loading: false,
     error: false,
@@ -38,9 +38,14 @@ export const reducerUtils = {
   }),
 };
 
-export const handleAsyncAction = ( type: string, payload: {[key: string]: any;} = {}, prevData = null) => {
-  if (typeof type == 'string' && type.includes('Success')) return reducerUtils.success(payload.data);
-  if (typeof type == 'string' && type.includes('Error')) return reducerUtils.error(payload);
+export const handleAsyncAction = ( res: {[key: string]: any}, prevData = null) => {
+  if (res && typeof res == "object") {
+    if (res.payload.status == 200) {
+      return reducerUtils.success(res.payload.data);
+    } else {
+      return reducerUtils.error(res.payload);
+    }
+  }
   return reducerUtils.loading(prevData); // 3.
 };
 
@@ -99,6 +104,7 @@ export const createActionState = (action: any, defaultState: any) => {
               actionState = defaultState[stateKey];
             }
           }
+        } else {
         }
       }
       if (!actionState) {
