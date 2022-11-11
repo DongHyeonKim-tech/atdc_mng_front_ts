@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tree } from 'antd';
 
-const CodeTreeList = ({dataSource, codeSelectHandler, selectedKeys}: {dataSource: any, codeSelectHandler: any, selectedKeys: Array<string> | undefined}) => {
+const CodeTreeList = ({dataSource, codeSelectHandler, selectedKeys}: {dataSource: {children: any}, codeSelectHandler: any, selectedKeys: Array<string> | undefined}) => {
   return (
     <div
     // style={{ border: "1px solid #ddd" }}

@@ -104,7 +104,6 @@ export const createActionState = (action: any, defaultState: any) => {
               actionState = defaultState[stateKey];
             }
           }
-        } else {
         }
       }
       if (!actionState) {

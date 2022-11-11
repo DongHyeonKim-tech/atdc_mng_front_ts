@@ -6,6 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { all } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
 import { codeSaga, codeSlice } from 'features/admin/code/codeReducer';
+import { memberSaga, memberSlice } from 'features/admin/member/memberReducer';
 
 export const history : any = createBrowserHistory();
 
@@ -13,10 +14,12 @@ const createRootReducer = (history: any) =>
     combineReducers({
         router: connectRouter(history),
         codeReducer: codeSlice.reducer,
+        memberReducer: memberSlice.reducer,
     });
 
 export function* rootSaga() {
     yield all([codeSaga()]);
+    yield all([memberSaga()]);
 }
 
 const sagaMiddleware = createSagaMiddleware();

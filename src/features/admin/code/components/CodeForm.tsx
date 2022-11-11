@@ -3,7 +3,7 @@ import { Form, Input, Radio } from 'antd';
 import PropTypes, {func} from "prop-types";
 
 const CodeForm = (
-    {initialValues, submitHandler, deleteHandler, updateHandler} : {initialValues: any, submitHandler: (fieldsValue: any) => void, deleteHandler: (fieldsValue: any, form: object) => void, updateHandler: (fieldsValue: any) => void}) => {
+    {initialValues, submitHandler, deleteHandler, updateHandler} : {initialValues: {commCd: string}, submitHandler: (fieldsValue: object) => void, deleteHandler: (fieldsValue: object, form: object) => void, updateHandler: (fieldsValue: object) => void}) => {
   const [codeForm] = Form.useForm();
   const [viewMode, setViewMode] = useState<boolean>(true);
   const [createMode, setCreateMode] = useState<boolean>(true);

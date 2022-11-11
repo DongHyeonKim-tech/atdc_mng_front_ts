@@ -11,8 +11,6 @@ function App( history: any ) {
           <BrowserRouter>
               <IndexRoute />
           </BrowserRouter>
-
-
       // </ConnectedRouter>
   );
 }
