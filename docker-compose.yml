@@ -1,0 +1,28 @@
+version: '3.2'
+
+services:
+  deploy:
+    container_name: atcd_mng_ts
+    image: react-nginx:latest
+    #    build:
+    #      context: .
+    #      dockerfile: dockers/Dockerfile
+    ports:
+      - "3100:80"
+    restart: always
+    stdin_open: true
+    tty: true
+  # docker build -t limenet_frontend_js_deploy:1.0.0 -f ./dockers/Dockerfile .
+  nginx:
+    build:
+      context: .
+      dockerfile: dockers/Dockerfile_nginx
+    container_name: deploy_nginx
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - "80:80"
+    depends_on:
+      - deploy
+#docker build -t nginx_deploy:1.0.0 -f ./dockers/Dockerfile_nginx .
