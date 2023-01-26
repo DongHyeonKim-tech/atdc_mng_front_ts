@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 // import "App.less";
-import 'features/common/layout/styles/common.css';
+import 'features/common/layout/styles/Common.css';
 import IndexRoute from 'routes/IndexRoute';
 import { BrowserRouter } from "react-router-dom"
 
