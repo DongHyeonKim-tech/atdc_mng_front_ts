@@ -1,55 +1,46 @@
 import React, {useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import {push} from 'connected-react-router';
+import { useNavigate } from "react-router-dom";
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme, Space, Button } from 'antd';
+import { Layout, Menu, Space, Button } from 'antd';
 import 'features/common/layout/styles/Common.css';
 import '/node_modules/antd/dist/antd.css';
+
 const { Header, Content, Footer } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
 
-function getItem(
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-    type?: 'group',
-): MenuItem {
-    return {
-        key,
-        icon,
-        children,
-        label,
-        type,
-    } as MenuItem;
+interface MenuItemProps {
+    key: string,
+    label: string,
+    path: string
 }
 
-const items: MenuProps['items'] = [
-    getItem('Navigation One', 'sub1', null, []),
-
-    getItem('Navigation Two', 'sub2', null,[]),
-
-    getItem('Navigation Three', 'sub4', null,[]),
-];
 
 const AtdcLayout = ({changeHandler, children} : {changeHandler?:void, children: any}) => {
 
     const dispatch = useDispatch();
-    const menu = [
+
+    const navigate = useNavigate();
+
+    const menu : MenuItemProps[] = [
         {
-            title: '내 근태',
-            key: '/atdc/my'
+            key: '1',
+            label: '사용자',
+            path: '/atdc/my'
         },
         {
-            title: '팀 근태',
-            key: '/atdc/team'
+            key: '2',
+            label: '관리자',
+            path: '/atdc/team'
         },
         {
-            title: '시스템',
-            key: '/'
+            key: '3',
+            label: '시스템 관리자',
+            path: '/admin/code'
         }
-    ]
+    ];
+
+
 
     return (
         <Layout>
@@ -65,30 +56,29 @@ const AtdcLayout = ({changeHandler, children} : {changeHandler?:void, children: 
                         whiteSpace: 'nowrap'
                     }}
                 >근태관리 시스템</div>
-                    <Menu
-                        theme="light"
-                        mode="horizontal"
-                        defaultSelectedKeys={['1']}
-                        items={new Array(4).fill(null).map((_, index) => ({
-                            key: String(index + 1),
-                            label: `nav ${index + 1}`,
-                        }))}
-                        style={{height: '90%', width: '50%', display: 'inline-block'}}
-                    />
+                {menu &&
+                    <Menu mode="horizontal" style={{height: '90%', display: 'inline-block'}}>
+                        {
+                            menu.map((item) => {
+                                return (
+                                <Menu.Item key={item.key} onClick={() => {navigate(item.path)}} style={{width: '100px'}}>
+                                    <a>{item.label}</a>
+                                </Menu.Item>        
+                                )
+                            })
+                        }
+
+                    </Menu>
+                }
                 <Space style={{float: 'right'}}>
                     <Button >프로필</Button>
 
                 </Space>
             </Header>
-            <Content className="site-layout" style={{ padding: '0 50px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
-                <div style={{ padding: 24, minHeight: 380}}>Content</div>
+            <Content className="site-layout" style={{ padding: '50px 50px 50px' }}>
+                {children}
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+            <Footer style={{ textAlign: 'center' }}>FOOTERRRRRRRRRRRRRRRR</Footer>
         </Layout>
     )
 }

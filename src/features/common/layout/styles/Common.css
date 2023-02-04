@@ -13,9 +13,3 @@
     float: right;
     margin: 16px 0 16px 24px;
 }
-
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
-    margin-top: -1px;
-    margin-bottom: 0;
-    padding: 10px 10px 10px 10px;
-}

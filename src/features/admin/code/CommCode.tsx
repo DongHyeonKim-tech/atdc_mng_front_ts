@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'antd';
+import { Modal, Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CodeTreeList from 'features/admin/code/components/CodeTreeList';
@@ -98,17 +98,26 @@ const CommCode = () => {
 
   return (
     <>
-      <CodeTreeList
+
+<Row gutter={16}>
+      <Col className="gutter-row" span={6}>
+          <CodeTreeList
         dataSource={codeList.data}
         selectedKeys={selectedKeys}
         codeSelectHandler={codeSelectHandler}
-      />
-      <CodeForm
+      />    
+      </Col>
+      <Col className="gutter-row" span={18}>
+              <CodeForm
         initialValues={codeDetail.data}
         submitHandler={codeSubmitHandler}
         deleteHandler={codeDeleteHandler}
         updateHandler={codeUpdateHandler}
       />
+      </Col>
+    </Row>
+
+
     </>
   );
 };
